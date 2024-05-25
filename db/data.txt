@@ -1,0 +1,9 @@
+DATABASE USER = askrowan17
+DATABASE PASS = HxLoAQCRewtpYTcp
+
+ADMIN = admin
+PASS = XGHodkBRHpH0lG2U
+
+strapi
+user: yo
+pass = yo1234567YO

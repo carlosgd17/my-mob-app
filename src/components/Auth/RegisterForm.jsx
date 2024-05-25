@@ -7,6 +7,8 @@ import { formStyles } from '../../styles'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
+import { registerApi } from '../../api/user'
+
 export default function RegisterForm({changeForm}) {
 
     const formik = useFormik({
@@ -14,13 +16,20 @@ export default function RegisterForm({changeForm}) {
         validationSchema: Yup.object(validationSchema()),
         onSubmit: async (formData) => {
             console.log(formData);
+            try {
+                await registerApi(formData);
+                console.log('Usuario creado');
+                changeForm();
+            } catch (error) {
+                console.log(error);
+            }
         }
     });
 
     function initialValues() {
         return {
             email: '',
-            userName: '',
+            username: '',
             password: '',
             repeatPassword: ''
         }
@@ -29,7 +38,7 @@ export default function RegisterForm({changeForm}) {
     function validationSchema() {
         return {
             email: Yup.string().email().required(true),
-            userName: Yup.string().required(true),
+            username: Yup.string().required(true),
             password: Yup.string().required(true),
             repeatPassword: Yup.string().required(true).oneOf([Yup.ref('password')])
         }
@@ -48,9 +57,9 @@ export default function RegisterForm({changeForm}) {
         <TextInput
             label="Nombre de usuario"
             style={formStyles.input}
-            onChangeText={(text) => formik.setFieldValue('userName', text)}
-            value={formik.values.userName}
-            error={formik.errors.userName}
+            onChangeText={(text) => formik.setFieldValue('username', text)}
+            value={formik.values.username}
+            error={formik.errors.username}
         />
 
         <TextInput
