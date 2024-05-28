@@ -22,7 +22,7 @@ export default function LoginForm({changeForm}) {
             // console.log(formData);
             try {
                 const response = await loginApi(formData);
-
+                if(response.statusCode) throw 'Error en el usuario o contraseña';
                 //console.log(response);
                 login(response);
                 // changeForm();

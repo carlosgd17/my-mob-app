@@ -10,12 +10,19 @@ export const setTokenApi = async (token) => {
     }
 }
 
-const getTokenApi = async () => {
+export const getTokenApi = async () => {
     try {
         const value = await AsyncStorage.getItem(TOKEN);
-        if(value !== null) {
-            
-        }
+        return value;
+    } catch (error) {
+        return null;
+    }
+}
+
+export const removeTokenApi = async () => {
+    try {
+        await AsyncStorage.removeItem(TOKEN);
+        return true;
     } catch (error) {
         return null;
     }
