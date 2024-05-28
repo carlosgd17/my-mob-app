@@ -6,4 +6,5 @@ PASS = XGHodkBRHpH0lG2U
 
 strapi
 user: yo
+yo@yo.yo
 pass = yo1234567YO

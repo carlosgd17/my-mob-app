@@ -7,20 +7,25 @@ import { formStyles } from '../../styles'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
+import useAuth from '../../hooks/useAuth'
+
 import { loginApi } from '../../api/user'
 
 export default function LoginForm({changeForm}) {
+
+    const { login } = useAuth();
 
     const formik = useFormik({
         initialValues: initialValues(),
         validationSchema: Yup.object(validationSchema()),
         onSubmit: async (formData) => {
-            console.log(formData);
+            // console.log(formData);
             try {
                 const response = await loginApi(formData);
 
-                console.log(response);
-                changeForm();
+                //console.log(response);
+                login(response);
+                // changeForm();
             } catch (error) {
                 console.log(error);
             }
